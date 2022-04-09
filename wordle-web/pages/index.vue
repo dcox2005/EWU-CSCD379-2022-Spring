@@ -73,6 +73,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
+          <v-btn color="purple" href="./game">GO TO GAME</v-btn>
           <v-btn color="primary" nuxt to="/inspire"> {{buttonText}} </v-btn>
           <v-btn color="secondary" :loading="isLoading" @click="changeButtonText"> Change Text </v-btn>
         </v-card-actions>
