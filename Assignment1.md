@@ -38,6 +38,8 @@ The purpose of this assignment is to solidify your learning of:
 7. Azure site works ❌✅
    - Post your Azure URL in your readme.md file. Replace the URL in the readme with your URL. ❌✅
 
+https://green-stone-03a84051e.1.azurestaticapps.net
+
 ## Extra Credit
 
 - Come up with up to three unique ideas for stories we could implement as part of our project. Post these in your readme.md. ❌✅
