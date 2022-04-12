@@ -8,6 +8,11 @@
           <small>
             <em>&mdash;John Johnson</em>
           </small>
+          <div>
+            <v-btn color="purple" href="./">
+            Return to main page
+          </v-btn>
+          </div>
         </footer>
       </blockquote>
     </v-col>
