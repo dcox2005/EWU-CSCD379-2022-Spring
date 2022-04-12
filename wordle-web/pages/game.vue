@@ -39,6 +39,11 @@
             Return to main page
           </v-btn>
         </v-col>
+        <div>
+            <v-btn color="blue" href="https://qntm.org/files/absurdle/absurdle.html" target="_blank">
+            Try another game
+          </v-btn>
+          </div>
       </v-card-actions>
     </v-card>
   </v-row>
