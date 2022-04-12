@@ -45,6 +45,9 @@
           </v-btn>
           </div>
       </v-card-actions>
+      <p align="center">
+        Based on the game <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank">Wordle</a>
+      </p>
     </v-card>
   </v-row>
 </template>
