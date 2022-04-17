@@ -1,9 +1,11 @@
 <template>
+<v-container>
   <v-card class="my-5 pa-5">
     <v-row v-for="(charRow, i) in chars" :key="i" no-gutters justify="center">
       <v-col v-for="char in charRow" :key="char" cols="1">
         <v-container class="text-center">
           <v-btn
+            :elevation="15"
             :color="letterColor(char)"
             :disabled="wordleGame.gameOver"
             @click="setLetter(char)"
@@ -15,7 +17,7 @@
     </v-row>
     <v-btn
       :disabled="wordleGame.gameOver"
-      class="float-left"
+      class="justify-start"
       @click="guessWord"
     >
       Guess
@@ -29,6 +31,7 @@
       <v-icon>mdi-backspace</v-icon>
     </v-btn>
   </v-card>
+</v-container>
 </template>
 
 <script lang="ts">

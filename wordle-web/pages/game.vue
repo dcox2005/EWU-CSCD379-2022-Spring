@@ -21,6 +21,7 @@
     <game-board :wordleGame="wordleGame" />
 
     <keyboard :wordleGame="wordleGame" />
+    <AvailableWords :wordleGame="wordleGame"/>
   </v-container>
 </template>
 
