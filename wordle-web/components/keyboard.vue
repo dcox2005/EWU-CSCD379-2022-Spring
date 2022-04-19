@@ -22,6 +22,9 @@
     >
       Guess
     </v-btn>
+    <v-btn :style="{left: '40%', transform:'translateX(-50%)'}">
+      <AvailableWords :wordleGame="wordleGame"/>
+    </v-btn>
     <v-btn
       :disabled="wordleGame.gameOver"
       icon
