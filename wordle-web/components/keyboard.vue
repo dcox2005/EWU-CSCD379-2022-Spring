@@ -22,9 +22,6 @@
     >
       Guess
     </v-btn>
-    <v-btn :style="{left: '40%', transform:'translateX(-50%)'}">
-      <AvailableWords :wordleGame="wordleGame"/>
-    </v-btn>
     <v-btn
       :disabled="wordleGame.gameOver"
       icon
@@ -33,6 +30,9 @@
     >
       <v-icon>mdi-backspace</v-icon>
     </v-btn>
+    <v-row>
+      <AvailableWords :wordleGame="wordleGame"/>
+    </v-row>
   </v-card>
 </v-container>
 </template>
