@@ -1,9 +1,9 @@
 <template>
-  <v-card width="450">
+  <v-card width="375">
     <v-container>
       <v-row v-for="row in wordleGame.maxGuesses" :key="row" dense>
         <v-col v-for="index in wordleGame.currentWord.maxLetters" :key="index">
-          <v-card height="50" :color="letterColor(getLetter(row, index))">
+          <v-card height="50" width="50" :color="letterColor(getLetter(row, index))">
             <v-card-text class="text-center">
               {{ getChar(getLetter(row, index)) }}
             </v-card-text>
