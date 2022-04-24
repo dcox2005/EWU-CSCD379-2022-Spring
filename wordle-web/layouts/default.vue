@@ -50,7 +50,6 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import SettingsDialog from '@/components/settings-dialog.vue'
-// import RightMenuWindow from '@/components/right-menu-window.vue'
 @Component({ components: { SettingsDialog } })
 export default class DefaultLayout extends Vue {
   rightDrawer: boolean = false
