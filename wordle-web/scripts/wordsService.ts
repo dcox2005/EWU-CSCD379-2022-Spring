@@ -638,8 +638,7 @@ export abstract class WordsService {
     'zebra',
   ]
 
-  static getWords(): string[]
-  {
-    return this.#words;
+  static getWords(): string[] {
+    return this.#words
   }
 }

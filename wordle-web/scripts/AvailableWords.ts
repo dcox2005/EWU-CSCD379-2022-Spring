@@ -1,56 +1,37 @@
-import { WordsService } from '~/scripts/wordsService';
-import { WordleGame } from '~/scripts/wordleGame'
+import { WordsService } from '~/scripts/wordsService'
 
+export class AvailableWords {
+  words: string[] = []
+  count: number = 0
 
-export class AvailableWords 
-{
-    availableWords: string[] = [];
-    availableWordCount: number = 0;
-    countButton: boolean = false;
-
-    validWords(word: string): string[]
-    {
-        // const word: string = this.wordleGame.currentWord.text;
-        // console.log(`word: ${word}`);
-        this.availableWords = [];
-        if(!word.includes("?"))
-        {
-            this.availableWords.push("");
-            this.availableWordCount = 0;
-            return this.availableWords;
-        }
-
-        let expression: string = "^[a-z]{0,5}";
-        for(let i = 0; i < 5; i++)
-        {
-            if(word.charAt(i) === '?')
-            {
-                expression += "[a-z]";
-            }
-            else
-            {
-                expression += word.charAt(i);
-            }
-        }
-
-        let regex: RegExp = new RegExp(expression);
-        let wordList: string[] = WordsService.getWords();
-        for(let i = 0; i < wordList.length; i++)
-        {
-            if(regex.test(wordList[i]))
-            {
-                this.availableWords.push(wordList[i]);
-            }
-        }
-
-        wordList = [];
-
-        this.availableWordCount = this.availableWords.length;
-        return this.availableWords;
+  validWords(word: string): string[] {
+    this.words = []
+    if (!word.includes('?')) {
+      this.words.push('')
+      this.count = 0
+      return this.words
     }
 
-    showCountButton()
-    {
-        this.countButton = true;
+    let expression: string = '^[a-z]{0,5}'
+    for (let i = 0; i < 5; i++) {
+      if (word.charAt(i) === '?') {
+        expression += '[a-z]'
+      } else {
+        expression += word.charAt(i)
+      }
     }
+
+    const regex: RegExp = new RegExp(expression)
+    let wordList: string[] = WordsService.getWords()
+    for (let i = 0; i < wordList.length; i++) {
+      if (regex.test(wordList[i])) {
+        this.words.push(wordList[i])
+      }
+    }
+
+    wordList = []
+
+    this.count = this.words.length
+    return this.words
+  }
 }
