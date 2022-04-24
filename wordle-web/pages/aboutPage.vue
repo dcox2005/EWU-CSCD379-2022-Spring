@@ -30,10 +30,10 @@
         </v-card-text>
         <v-card-actions>
           <v-col class="text-right">
-            <v-btn color="info" href="./game"> Play Game </v-btn>
+            <v-btn color="info" to="./game"> Play Game </v-btn>
           </v-col>
           <v-col class="text-middle">
-            <v-btn color="primary" href="./"> Return to main page </v-btn>
+            <v-btn color="primary" to="./"> Return to main page </v-btn>
           </v-col>
           <div>
             <v-btn
