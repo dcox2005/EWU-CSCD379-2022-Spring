@@ -22,45 +22,45 @@ describe('AvailableWord', () => {
   test('no words found', () => {
     words = new AvailableWords()
     expect(words.count).toBe(0)
-    word = 'apple'
+    word = 'APPLE'
     allWords = words.validWords(word)
     expect(words.count).toBe(0)
     expect(allWords[0]).toBe('')
     expect(allWords[1]).toBeFalsy()
   })
 
-  test('word a????', () => {
+  test('word A????', () => {
     words = new AvailableWords()
-    word = 'a????'
+    word = 'A????'
     allWords = words.validWords(word)
     expect(allWords.length).toBeGreaterThan(0)
     expect(allWords.length).toBe(29)
     expect(words.count).toBe(29)
-    expect(allWords.includes('angel')).toBeTruthy()
-    expect(allWords.includes('baton')).toBeFalsy()
+    expect(allWords.includes('ANGEL')).toBeTruthy()
+    expect(allWords.includes('BATON')).toBeFalsy()
   })
 
-  test('complicated ?a??h', () => {
+  test('complicated ?A??H', () => {
     words = new AvailableWords()
-    word = '?a??h'
+    word = '?A??H'
     allWords = words.validWords(word)
     expect(allWords.length).toBeGreaterThan(0)
     expect(allWords.length).toBe(2)
     expect(words.count).toBe(2)
-    expect(allWords.includes('batch')).toBeTruthy()
-    expect(allWords.includes('garth')).toBeTruthy()
-    expect(allWords.includes('baton')).toBeFalsy()
+    expect(allWords.includes('BATCH')).toBeTruthy()
+    expect(allWords.includes('GARTH')).toBeTruthy()
+    expect(allWords.includes('BATON')).toBeFalsy()
   })
 
-  test('find hus?y', () => {
+  test('find HUS?Y', () => {
     words = new AvailableWords()
-    word = 'hus?y'
+    word = 'HUS?Y'
     allWords = words.validWords(word)
     expect(allWords.length).toBeGreaterThan(0)
     expect(allWords.length).toBe(1)
     expect(words.count).toBe(1)
-    expect(allWords.includes('husky')).toBeTruthy()
-    expect(allWords.includes('garth')).toBeFalsy()
-    expect(allWords.includes('baton')).toBeFalsy()
+    expect(allWords.includes('HUSKY')).toBeTruthy()
+    expect(allWords.includes('GARTH')).toBeFalsy()
+    expect(allWords.includes('BATON')).toBeFalsy()
   })
 })
