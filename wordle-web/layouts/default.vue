@@ -15,10 +15,12 @@
     <v-navigation-drawer v-model="rightDrawer" right fixed app>
       <v-list>
         <v-list-item-content>
-          <v-list-item-title class="text-h6">
+          <v-list-item-title class="text-h6 pl-5">
             Enigma Vocablulary
           </v-list-item-title>
-          <v-list-item-subtitle> Navigation Menu </v-list-item-subtitle>
+          <v-list-item-subtitle class="pl-5"> 
+            Navigation Menu 
+          </v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item
           v-for="(item, i) in rightItems"

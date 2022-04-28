@@ -4,17 +4,21 @@ export class AvailableWords {
   words: string[] = []
   count: number = 0
 
-  validWords(word: string): string[] {
+  validWords(word: string): string[] 
+  {
     this.words = []
-    if (!word.includes('?')) {
+    if (!word.includes('?')) 
+    {
       this.words.push('')
       this.count = 0
       return this.words
     }
 
     let expression: string = '^[a-z]{0,5}'
-    for (let i = 0; i < 5; i++) {
-      if (word.charAt(i) === '?') {
+    for (let i = 0; i < 5; i++) 
+    {
+      if (word.charAt(i) === '?') 
+      {
         expression += '[a-z]'
       } else {
         expression += word.charAt(i)
