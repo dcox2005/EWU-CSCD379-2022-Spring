@@ -11,8 +11,10 @@
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon> mdi-hamburger-plus </v-icon>
       </v-btn>
+
     </v-app-bar>
-    <v-navigation-drawer v-model="rightDrawer" right fixed app>
+    <right-menu-window :rightDrawer.sync = rightDrawer />
+    <!-- <v-navigation-drawer v-model="rightDrawer" right fixed app>
       <v-list>
         <v-list-item-content>
           <v-list-item-title class="text-h6 pl-5">
@@ -37,7 +39,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
     <v-main>
       <v-container>
         <Nuxt />

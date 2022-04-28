@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-      <v-icon> mdi-hamburger-plus </v-icon>
-    </v-btn>
+
     <v-navigation-drawer v-model="rightDrawer" right fixed app>
       <v-list>
         <v-list-item-content>
@@ -29,23 +26,28 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-  </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component({})
 export default class RightMenuWindow extends Vue {
-  rightDrawer: boolean = false
+  @Prop({required: true})
+  rightDrawer!: boolean
+
+  get localRightDrawer(){
+    return this.rightDrawer;
+  }
+
+  set localRightDrawer(value: boolean){
+    this.$emit("update:rightDrawer", value)
+  }
+
   items = [
     { title: 'Home Page', icon: 'mdi-home', link: './' },
     { title: 'Game', icon: 'mdi-nintendo-game-boy', link: './game' },
     { title: 'About', icon: 'mdi-help-circle', link: './aboutPage' },
   ]
-
-  toggleRightDrawer(): void {
-    this.rightDrawer = !this.rightDrawer
-  }
 }
 </script>
