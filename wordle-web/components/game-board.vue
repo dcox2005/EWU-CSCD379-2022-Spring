@@ -1,5 +1,5 @@
 <template>
-  <v-card width="375">
+  <v-card width="360">
     <v-container>
       <v-row v-for="row in wordleGame.maxGuesses" :key="row" dense>
         <v-col v-for="index in wordleGame.currentWord.maxLetters" :key="index">

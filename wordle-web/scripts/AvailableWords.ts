@@ -14,13 +14,15 @@ export class AvailableWords {
       return this.words
     }
 
-    let expression: string = '^[a-z]{0,5}'
+    let expression: string = '^[A-Z]{0,5}'
     for (let i = 0; i < 5; i++) 
     {
       if (word.charAt(i) === '?') 
       {
-        expression += '[a-z]'
-      } else {
+        expression += '[A-Z]'
+      } 
+      else 
+      {
         expression += word.charAt(i)
       }
     }
