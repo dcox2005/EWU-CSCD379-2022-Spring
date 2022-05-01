@@ -17,6 +17,15 @@ public class PlayerService
         return result;
     }
 
+    public IEnumerable<Player> GetTop10Players()
+    {
+        var result = _context.Players
+            .OrderBy(x => x.AverageAttempts * x.GameCount)
+            .ThenBy(x => x.AverageSecondsPerGame * x.GameCount)
+            .Take(10);
+        return result;
+    }
+
     public void Update(string name, int attempts, int seconds)
     {
         if (attempts < 1 || attempts > 6)
@@ -57,7 +66,7 @@ public class PlayerService
 
             context.Players.Add(new Player()
             {
-                Name = "Meg",
+                Name = "S. Morgenstern",
                 GameCount = 5,
                 AverageAttempts = 2.2,
                 AverageSecondsPerGame = 5
@@ -65,19 +74,95 @@ public class PlayerService
 
             context.Players.Add(new Player()
             {
-                Name = "David",
-                GameCount = 8,
+                Name = "Buttercup",
+                GameCount = 1,
                 AverageAttempts = 5,
                 AverageSecondsPerGame = 60
             });
 
             context.Players.Add(new Player()
             {
-                Name = "Harry",
+                Name = "Westley",
                 GameCount = 10,
                 AverageAttempts = 5.2,
                 AverageSecondsPerGame = 120
             });
+
+            context.Players.Add(new Player()
+            {
+                Name = "Prince Humperdinck",
+                GameCount = 48,
+                AverageAttempts = 2.62,
+                AverageSecondsPerGame = 82
+            });
+
+            context.Players.Add(new Player()
+            {
+                Name = "Vizzini",
+                GameCount = 36,
+                AverageAttempts = 1.76,
+                AverageSecondsPerGame = 225
+            });
+
+
+
+            //here and up!
+            context.Players.Add(new Player()
+            {
+                Name = "Fezzik",
+                GameCount = 34,
+                AverageAttempts = 1.71,
+                AverageSecondsPerGame = 198
+            });
+
+            context.Players.Add(new Player()
+            {
+                Name = "Inigo Montoya",
+                GameCount = 60,
+                AverageAttempts = 4.25,
+                AverageSecondsPerGame = 273
+            });
+
+            context.Players.Add(new Player()
+            {
+                Name = "Count Rugen",
+                GameCount = 14,
+                AverageAttempts = 2.5,
+                AverageSecondsPerGame = 76
+            });
+
+            context.Players.Add(new Player()
+            {
+                Name = "King Lotharon",
+                GameCount = 56,
+                AverageAttempts = 5.5,
+                AverageSecondsPerGame = 251
+            });
+
+            context.Players.Add(new Player()
+            {
+                Name = "Queen Bella",
+                GameCount = 8,
+                AverageAttempts = 1.5,
+                AverageSecondsPerGame = 167
+            });
+
+            context.Players.Add(new Player()
+            {
+                Name = "Miracle Max",
+                GameCount = 50,
+                AverageAttempts = 2.64,
+                AverageSecondsPerGame = 64
+            });
+
+            context.Players.Add(new Player()
+            {
+                Name = "Valerie",
+                GameCount = 6,
+                AverageAttempts = 2,
+                AverageSecondsPerGame = 297
+            });
+
 
             context.SaveChanges();
         }
