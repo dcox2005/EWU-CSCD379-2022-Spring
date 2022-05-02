@@ -30,6 +30,8 @@ public class PlayerController : ControllerBase
     [HttpPost]
     public IActionResult Post([FromBody] PlayerPost player)
     {
+
+        //how is the PlayerPost being created and how to you validate its input?
         _service.Update(player.Name, player.Attempts, player.Seconds);
         return Ok();
     }

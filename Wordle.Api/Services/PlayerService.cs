@@ -61,9 +61,8 @@ public class PlayerService
 
     public static void Seed(AppDbContext context)
     {
-        if (!context.Players.Any())
+        if (!context.Players.Any())//method is crashing. why?
         {
-
             context.Players.Add(new Player()
             {
                 Name = "S. Morgenstern",
@@ -92,7 +91,7 @@ public class PlayerService
             {
                 Name = "Prince Humperdinck",
                 GameCount = 48,
-                AverageAttempts = 2.62,
+                AverageAttempts = 2.75,
                 AverageSecondsPerGame = 82
             });
 
@@ -100,18 +99,17 @@ public class PlayerService
             {
                 Name = "Vizzini",
                 GameCount = 36,
-                AverageAttempts = 1.76,
+                AverageAttempts = 1.5,
                 AverageSecondsPerGame = 225
             });
 
 
 
-            //here and up!
             context.Players.Add(new Player()
             {
                 Name = "Fezzik",
                 GameCount = 34,
-                AverageAttempts = 1.71,
+                AverageAttempts = 1.5,
                 AverageSecondsPerGame = 198
             });
 
