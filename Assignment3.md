@@ -20,10 +20,10 @@ Add leaderboard to the application
 - Determine a good algorithm for sorting scores
 
 ## Turn in Process
-- On your fork, create an Assignment 3 branch 
-- Update this branch (Fetch upstream) from the Assignment 3 branch in the class repo. [Assignment 3 in class repo](https://github.com/IntelliTect-Samples/EWU-CSCD379-2022-Spring/tree/Assignment3)
-- Do your homework in your Assignment 3 branch
-- Submit your pull request against Assignment 3 in the class repo
+- On your fork, create an Assignment3 branch 
+- Update this branch (Fetch upstream) from the Assignment3 branch in the class repo. [Assignment3 in class repo](https://github.com/IntelliTect-Samples/EWU-CSCD379-2022-Spring/tree/Assignment3)
+- Do your homework in your Assignment3 branch
+- Submit your pull request against Assignment3 in the class repo
 - Ask in Teams chat if you have questions or issues
 
 ## Instructions
