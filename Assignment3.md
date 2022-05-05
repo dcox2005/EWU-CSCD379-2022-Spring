@@ -19,6 +19,13 @@ Add leaderboard to the application
 - Create a Leaderboard page which displays the top 10 scores
 - Determine a good algorithm for sorting scores
 
+## Turn in Process
+- On your fork, create an Assignment 3 branch 
+- Update this branch (Fetch upstream) from the Assignment 3 branch in the class repo. [Assignment 3 in class repo](https://github.com/IntelliTect-Samples/EWU-CSCD379-2022-Spring/tree/Assignment3)
+- Do your homework in your Assignment 3 branch
+- Submit your pull request against Assignment 3 in the class repo
+- Ask in Teams chat if you have questions or issues
+
 ## Instructions
 
 **1. Create a leaderboard API Controller** ❌✅
