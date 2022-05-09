@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+      - Assignment*
     paths:
       - 'Wordle.api/**'
   workflow_dispatch:
@@ -53,7 +54,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'WordleApiClass'
+          app-name: 'WordleApiClassDavid'
           slot-name: 'Production'
           publish-profile: ${{ secrets.API_AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: .
