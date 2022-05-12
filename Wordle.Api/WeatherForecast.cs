@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 namespace Wordle.api;
 
 public class WeatherForecast
@@ -13,6 +14,9 @@ public class WeatherForecast
 }
 =======
 namespace Wordle.api
+=======
+namespace Wordle.Api
+>>>>>>> remotes/Intellitect-Spring/main
 {
     public class WeatherForecast
     {

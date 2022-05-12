@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 namespace Wordle.api.Controllers;
 [ApiController]
 [Route("[controller]")]
@@ -32,6 +33,9 @@ public class WeatherForecastController : ControllerBase
 }
 =======
 namespace Wordle.api.Controllers
+=======
+namespace Wordle.Api.Controllers
+>>>>>>> remotes/Intellitect-Spring/main
 {
     [ApiController]
     [Route("Weather")]

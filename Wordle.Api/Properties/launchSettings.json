@@ -14,16 +14,20 @@
     }
   },
   "profiles": {
-    "Wordle.api": {
+    "Wordle.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
 <<<<<<< HEAD
+<<<<<<< HEAD
       "applicationUrl": "https://localhost:7060;http://localhost:5060",
 =======
       "applicationUrl": "https://localhost:7125;http://localhost:5125",
 >>>>>>> 6aeb3a19b05d7c718c0c0cac35382d6e5af6b464
+=======
+      "applicationUrl": "https://localhost:4000;http://localhost:4080",
+>>>>>>> remotes/Intellitect-Spring/main
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
