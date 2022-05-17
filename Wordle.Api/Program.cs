@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-using Wordle.api.Services;
-=======
 using Microsoft.EntityFrameworkCore;
 using Wordle.Api.Data;
 using Wordle.Api.Services;
->>>>>>> remotes/Intellitect-Spring/main
 
->>>>>>> 6aeb3a19b05d7c718c0c0cac35382d6e5af6b464
 var builder = WebApplication.CreateBuilder(args);
 
 //Change CORS policy
@@ -16,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 string allowance = "AllowAll";
 
 var allowAll = builder.Services.AddCors(options => {
-    options.AddPolicy(allowance, builder => 
+    options.AddPolicy(allowance, builder =>
         builder.AllowAnyOrigin()
         .AllowAnyMethod()
         .AllowAnyHeader());
@@ -29,10 +22,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-<<<<<<< HEAD
-=======
 builder.Services.AddScoped<ILeaderBoardService, LeaderBoardServiceMemory>();
->>>>>>> 6aeb3a19b05d7c718c0c0cac35382d6e5af6b464
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
@@ -48,19 +38,11 @@ using (var scope = app.Services.CreateScope())
     ScoreStatsService.Seed(context);
 }
 // Configure the HTTP request pipeline.
-<<<<<<< HEAD
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-=======
 //if (app.Environment.IsDevelopment())
 //{
 app.UseSwagger();
 app.UseSwaggerUI();
 //}
->>>>>>> 6aeb3a19b05d7c718c0c0cac35382d6e5af6b464
 
 app.UseHttpsRedirection();
 
