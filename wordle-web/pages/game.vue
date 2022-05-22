@@ -12,8 +12,8 @@
     </v-container>
     <v-container v-if="isLoaded">
       <v-row justify="center">
-        <v-col cols="5"></v-col>
-        <v-col cols="2" class="mt-0 mb-0 pt-0 pb-0">
+        <v-col cols="12" sm="5"></v-col>
+        <v-col cols="12" sm="2" class="mt-0 mb-0 pt-0 pb-0">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-container>
@@ -35,7 +35,7 @@
             <span> Go Home </span>
           </v-tooltip>
         </v-col>
-        <v-col cols="5" class="d-flex flex-row-reverse">
+        <v-col cols="12" sm="5" class="d-flex flex-row-reverse">
           <v-dialog v-model="dialog" justify-end persistent max-width="600px">
             <template #activator="{ on, attrs }">
               <v-btn color="primary" dark v-bind="attrs" v-on="on">
@@ -68,15 +68,11 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="3"></v-col>
-        <v-col cols="6" class="mt-0 mb-0 pt-0 pb-0">
-          <v-img
-            src="logo.jpeg"
-            class="center"
-            style="width: 400px; height: 100px"
-          />
+        <v-col cols="12" sm="3"></v-col>
+        <v-col cols="12" sm="6" class="mt-0 mb-0 pt-0 pb-0">
+          <NotWordleLogo />
         </v-col>
-        <v-col cols="3">
+        <v-col cols="12" sm="3">
           <v-card-text align="right">
             <v-icon>mdi-timer</v-icon>
             {{ displayTimer() }}
