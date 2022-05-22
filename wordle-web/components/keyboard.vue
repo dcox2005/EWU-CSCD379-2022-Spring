@@ -4,6 +4,7 @@
       <v-col v-for="char in charRow" :key="char" cols="1" class="ma-0 pa-0">
         <v-container class="text-center ma-0 pa-0">
           <v-btn
+            v-bind="btnProps()"
             class="pa-1 mx-3 my-1"
             elevation="8"
             :color="letterColor(char) == '' ? 'info' : letterColor(char)"
@@ -24,18 +25,18 @@
       </v-col>
     </v-row>
 
-    <v-row justify="center">
-      <v-col cols="2">
+    <v-row>
+      <v-col cols="12" sm="2" align="center">
         <v-btn
           :disabled="wordleGame.gameOver"
-          class="float-left pa-1 ml-3"
+          class="pa-1 ml-3"
           @click="guessWord"
         >
           Guess
         </v-btn>
       </v-col>
 
-      <v-col cols="8">
+      <v-col cols="12" sm="8" align="center">
         <CandidateDisplay
           class="pa-0"
           :disable="wordleGame.gameOver"
@@ -45,10 +46,9 @@
         />
       </v-col>
 
-      <v-col cols="2">
+      <v-col cols="12" sm="2" align="center">
         <v-btn
           :disabled="wordleGame.gameOver"
-          class="float-right pa-1"
           @click="removeLetter"
         >
           <v-icon>mdi-backspace</v-icon>
@@ -143,6 +143,32 @@ export default class KeyBoard extends Vue {
     }
 
     return Letter.getColorCode(LetterStatus.Unknown)
+  }
+
+
+  btnProps()  {
+    let props = {
+      'x-small': false,
+      'small': false,
+      'large': false,
+      'x-large': false
+      }
+    switch(this.$vuetify.breakpoint.name) {
+      case 'xs':
+        props['x-small'] = true
+        break
+      case 'sm':
+        props['small'] = true
+        break  
+      case 'lg':
+        props['large'] = true
+        break
+        case 'xl':
+        props['x-large'] = true
+        break 
+      default: 
+    }
+    return props
   }
 }
 </script>
