@@ -72,6 +72,24 @@ public class DateWordController : Controller
             }
         }
     }
+
+    [Route("[action]")]
+    [HttpGet]
+    public IEnumerable<Word> GetAllWords()
+    {
+        return _context.Words;
+    }
+
+    [Route("[action]")]
+    [HttpGet]
+    public IEnumerable<DateWord> GetLast10DailyWords()
+    {
+        return _context.DateWords
+            .OrderBy(DW => DW.Date)
+            .Take(10);
+            
+    }
+
 }
 
 internal record struct NewStruct(object Item1, object Item2)
