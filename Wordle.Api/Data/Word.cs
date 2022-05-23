@@ -22,7 +22,7 @@ public class WordConfiguration : IEntityTypeConfiguration<Word>
         }
     }
 
-    private String[] WordList()
+    private static String[] WordList()
     {
         String[] words = {
             "acorn",

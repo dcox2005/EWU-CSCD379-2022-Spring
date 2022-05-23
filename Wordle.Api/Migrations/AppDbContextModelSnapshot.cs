@@ -50,6 +50,116 @@ namespace Wordle.Api.Migrations
                     b.HasIndex("WordId");
 
                     b.ToTable("DateWords");
+
+                    b.HasData(
+                        new
+                        {
+                            DateWordId = 13,
+                            AverageScore = 3.0099999999999998,
+                            AverageTime = 35.0,
+                            Date = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 1,
+                            WordId = 1
+                        },
+                        new
+                        {
+                            DateWordId = 2,
+                            AverageScore = 4.25,
+                            AverageTime = 180.0,
+                            Date = new DateTime(2022, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 25,
+                            WordId = 2
+                        },
+                        new
+                        {
+                            DateWordId = 3,
+                            AverageScore = 5.2999999999999998,
+                            AverageTime = 96.0,
+                            Date = new DateTime(2022, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 15,
+                            WordId = 3
+                        },
+                        new
+                        {
+                            DateWordId = 1,
+                            AverageScore = 1.54,
+                            AverageTime = 78.0,
+                            Date = new DateTime(2022, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 45,
+                            WordId = 1
+                        },
+                        new
+                        {
+                            DateWordId = 5,
+                            AverageScore = 5.3099999999999996,
+                            AverageTime = 65.0,
+                            Date = new DateTime(2022, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 86,
+                            WordId = 5
+                        },
+                        new
+                        {
+                            DateWordId = 6,
+                            AverageScore = 3.25,
+                            AverageTime = 87.0,
+                            Date = new DateTime(2022, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 758,
+                            WordId = 6
+                        },
+                        new
+                        {
+                            DateWordId = 7,
+                            AverageScore = 5.3399999999999999,
+                            AverageTime = 78.0,
+                            Date = new DateTime(2022, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 58,
+                            WordId = 7
+                        },
+                        new
+                        {
+                            DateWordId = 8,
+                            AverageScore = 3.5099999999999998,
+                            AverageTime = 98.0,
+                            Date = new DateTime(2022, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 456,
+                            WordId = 8
+                        },
+                        new
+                        {
+                            DateWordId = 9,
+                            AverageScore = 3.54,
+                            AverageTime = 45.0,
+                            Date = new DateTime(2022, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 543,
+                            WordId = 9
+                        },
+                        new
+                        {
+                            DateWordId = 10,
+                            AverageScore = 1.5600000000000001,
+                            AverageTime = 254.0,
+                            Date = new DateTime(2022, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 456,
+                            WordId = 10
+                        },
+                        new
+                        {
+                            DateWordId = 11,
+                            AverageScore = 1.3500000000000001,
+                            AverageTime = 148.0,
+                            Date = new DateTime(2022, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 876,
+                            WordId = 11
+                        },
+                        new
+                        {
+                            DateWordId = 12,
+                            AverageScore = 2.1299999999999999,
+                            AverageTime = 92.0,
+                            Date = new DateTime(2022, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NumberOfPlays = 115,
+                            WordId = 12
+                        });
                 });
 
             modelBuilder.Entity("Wordle.Api.Data.Game", b =>

@@ -85,9 +85,8 @@ public class DateWordController : Controller
     public IEnumerable<DateWord> GetLast10DailyWords()
     {
         return _context.DateWords
-            .OrderBy(DW => DW.Date)
+            .OrderByDescending(DW => DW.Date)
             .Take(10);
-            
     }
 
 }
