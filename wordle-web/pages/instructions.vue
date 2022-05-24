@@ -1,4 +1,5 @@
 <template>
+  <v-app style="background: #064A80">
   <v-container>
     <v-row justify="center">
       <!-- Back Button -->
@@ -89,4 +90,5 @@
 
     </v-row>
   </v-container>
+  </v-app>
 </template>

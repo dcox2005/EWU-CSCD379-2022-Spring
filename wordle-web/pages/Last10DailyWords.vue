@@ -1,4 +1,5 @@
 <template>
+  <v-app style="background: #064A80">
   <v-container fluid justify-center>
     <v-row justify="center">
       <v-col cols="12" lg="6">
@@ -35,6 +36,7 @@
       </v-col>
     </v-row>
   </v-container>
+  </v-app>
 </template>
 
 <script lang="ts">

@@ -1,4 +1,5 @@
 <template>
+  <v-app style="background: #064A80">
   <v-container>
     <v-row justify="center">
       <v-col cols="8">
@@ -11,7 +12,7 @@
           </v-card-title>
           <v-card color="transparent" flat>
             <v-card-actions class="justify-center">
-              <v-btn nuxt to="/game" color="primary" x-large width="200px">
+              <v-btn nuxt to="/game" color="#3A96B5" x-large width="200px">
                 Play
               </v-btn>
             </v-card-actions>
@@ -20,6 +21,7 @@
       </v-col>
     </v-row>
   </v-container>
+  </v-app>
 </template>
 
 <script>

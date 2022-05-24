@@ -1,4 +1,5 @@
 <template>
+  <v-app style="background: #064A80">
   <v-container fluid justify-center>
     <v-row justify="center">
       <v-tooltip bottom>
@@ -40,6 +41,7 @@
       </v-col>
     </v-row>
   </v-container>
+  </v-app>
 </template>
 
 <script lang="ts">

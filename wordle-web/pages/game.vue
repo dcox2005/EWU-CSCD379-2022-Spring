@@ -1,4 +1,5 @@
 <template>
+  <v-app style="background: #064A80">
   <v-container fluid fill-height>
     <v-container v-if="!isLoaded">
       <v-row justify="center">
@@ -48,6 +49,7 @@
                   v-model="playerName"
                   type="text"
                   placeholder="Guest"
+                  color="#3A96B5"
                 ></v-text-field>
               </v-card-text>
               <v-card-actions>
@@ -93,7 +95,13 @@
         <keyboard :wordleGame="wordleGame" />
       </v-row>
     </v-container>
+    <v-col>
+      <v-card-title>
+        <Birdle-icon />
+      </v-card-title>
+    </v-col>
   </v-container>
+  </v-app>
 </template>
 
 <script lang="ts">

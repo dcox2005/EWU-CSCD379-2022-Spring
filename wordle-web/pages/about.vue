@@ -1,4 +1,5 @@
 <template>
+  <v-app style="background: #064A80">
   <v-container>
     <v-row justify="center">
       <!-- Back Button -->
@@ -65,7 +66,7 @@
 
       <!-- Meg -->
       <v-col cols="12" lg="6">
-        <v-card>
+        <v-card color="white">
           <v-row>
             <v-col cols="12" md="4" align="center">
                 <v-avatar size="150" class="ma-6">
@@ -104,7 +105,7 @@
 
       <!-- Grant -->
       <v-col cols="12" lg="6">
-        <v-card>
+        <v-card color="white">
           <v-row>
             <v-col cols="12" md="4" align="center">
               <v-avatar size="150" class="ma-6">
@@ -140,6 +141,7 @@
       </v-col>
     </v-row>
   </v-container>
+  </v-app>
 </template>
 
 <script>
