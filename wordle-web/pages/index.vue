@@ -6,6 +6,9 @@
           <v-card-title class="justify-center">
             <NotWordleLogo />
           </v-card-title>
+          <v-card-title class="justify-center">
+            <Birdle />
+          </v-card-title>
           <v-card color="transparent" flat>
             <v-card-actions class="justify-center">
               <v-btn nuxt to="/game" color="primary" x-large width="200px">
