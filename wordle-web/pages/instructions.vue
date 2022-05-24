@@ -6,9 +6,7 @@
       <v-col cols="1">
         <v-btn
           fab
-          v-bind="attrs"
           color="primary"
-          v-on="on"
           @click="$router.go(-1)"
         >
           <v-icon>mdi-arrow-left</v-icon>
