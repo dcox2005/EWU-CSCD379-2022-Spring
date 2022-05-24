@@ -22,7 +22,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="8">
+      <v-col cols="10">
         <v-card>
           <div class="d-flex align-center">
             <v-card-text decoration>
@@ -41,7 +41,7 @@
           <div class="d-flex align-center">
             <v-card-text decoration>
               4. And if the letter is in the right box it'll be highlighted green
-              <v-img src="/green.JPG" width="1200" height="700"/>
+              <v-img src="/green.JPG" />
               <v-spacer />
               5. If the letters are not part of the word they'll show up gray
               <v-spacer />
@@ -53,7 +53,7 @@
           <div class="d-flex align-center">
             <v-card-text decoration>
               6. If the player guesses the word within 6 tries they win
-              <v-img src="/won.PNG" width="1500" height="500"/>
+              <v-img src="/won.PNG" />
             </v-card-text>
           </div>
         </v-card>
@@ -62,7 +62,7 @@
           <div class="d-flex align-center">
             <v-card-text decoration>
               7. Player also has the option of using the ? key to narrow down the list of options
-              <v-img src="/qMark.PNG" width="1000" height="1100"/>
+              <v-img src="/qMark.PNG" />
             </v-card-text>
           </div>
         </v-card>
