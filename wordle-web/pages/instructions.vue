@@ -79,7 +79,7 @@
           <div class="d-flex align-center">
             <v-card-text decoration>
               8. Another way of using the ? key
-              <v-img src="/qMark2.JPG" width="1000"/>
+              <v-img src="/qMark2.JPG" />
             </v-card-text>
           </div>
         </v-card>
