@@ -6,9 +6,7 @@
       <v-col cols="1">
         <v-btn
           fab
-          v-bind="attrs"
           color="primary"
-          v-on="on"
           @click="$router.go(-1)"
         >
           <v-icon>mdi-arrow-left</v-icon>
@@ -63,7 +61,7 @@
           <div class="d-flex align-center">
             <v-card-text decoration>
               7. Player also has the option of using the ? key to narrow down the list of options
-              <v-img src="/qMark.PNG" />
+              <v-img src="/qMark.png" />
             </v-card-text>
           </div>
         </v-card>
@@ -72,7 +70,7 @@
           <div class="d-flex align-center">
             <v-card-text decoration>
               Clicking on the list of available words shows the player a list of words that can be used
-              <v-img src="/qMark1.PNG" width="1000"/>
+              <v-img src="/qMark1.png" width="1000"/>
             </v-card-text>
           </div>
         </v-card>
@@ -81,7 +79,7 @@
           <div class="d-flex align-center">
             <v-card-text decoration>
               8. Another way of using the ? key
-              <v-img src="/qMark2.PNG" width="1000"/>
+              <v-img src="/qMark2.png" width="1000"/>
             </v-card-text>
           </div>
         </v-card>
