@@ -15,7 +15,7 @@
               <v-btn nuxt to="/game" color="#3A96B5" x-large width="200px">
                 Play
               </v-btn>
-              <v-btn nuxt to="/dailyGamme" color="#3A96B5" x-large width="200px">
+              <v-btn nuxt to="/dailyGame" color="#3A96B5" x-large width="200px">
                 Play Daily Game
               </v-btn>
             </v-card-actions>
