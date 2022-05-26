@@ -21,7 +21,8 @@ public class DateWordController : Controller
         _gameService = gameService;
     }
 
-    [HttpGet]
+    [Route("[action]")]
+    [HttpPost]
     public string? GetDailyWord(DateTime date)
     {
         //Sanitize the date by dropping time data

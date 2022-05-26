@@ -60,8 +60,8 @@
       </v-row>
       <v-row>
         <v-col cols="12" sm="3"></v-col>
-        <v-col cols="12" sm="6" class="mt-0 mb-0 pt-0 pb-0">
-          <NotWordleLogo />
+        <v-col cols="12" sm="6" class="mt-0 mb-0 pt-0 pb-0 text-center display-2">
+          DAILY<NotWordleLogo /> 
         </v-col>
         <v-col cols="12" sm="3">
           <v-card-text align="right">
@@ -74,6 +74,7 @@
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
           {{ gameResult.text }}
           <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+          <v-btn class="ml-2" nuxt to="/game"> Play Unlimited? </v-btn>
         </v-alert>
       </v-row>
 
@@ -102,24 +103,36 @@ import { Word } from '~/scripts/word'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
-  // ? need this for closing button
   dialog: boolean = false
   playerName: string = ''
   timeInSeconds: number = 0
   startTime: number = 0
   endTime: number = 0
   intervalID: any
-  word: string = WordsService.getRandomWord()
+  word: string = "boots"
   wordleGame = new WordleGame(this.word)
 
   mounted() {
     this.retrieveUserName()
-    setTimeout(() => this.startTimer(), 5000) // delay is because of ad loading
+    this.startTimer()
+    this.getDailyWordGame()
+  }
+
+  getDailyWordGame()
+  {
+    this.$axios.post('/DateWord/GetDailyWord', {
+      date: new Date()
+    })
+    .then((response) => {
+      this.word = response.data
+    })
+    .then(() => {
+      this.wordleGame = new WordleGame(this.word)
+    });
   }
 
   resetGame() {
-    this.word = WordsService.getRandomWord()
-    this.wordleGame = new WordleGame(this.word)
+    this.getDailyWordGame();
     this.timeInSeconds = 0
     this.startTimer()
   }
