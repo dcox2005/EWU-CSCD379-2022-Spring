@@ -115,16 +115,21 @@ export default class Game extends Vue {
   mounted() {
     this.retrieveUserName()
     this.startTimer()
+    // let date = new Date().toISOString();
+// console.log(`Date UTC: ${date}`);
     this.getDailyWordGame()
   }
 
   getDailyWordGame()
   {
+    let currentDate = new Date().toJSON();
     this.$axios.post('/DateWord/GetDailyWord', {
-      date: new Date()
+      // date: new Date().toUTCString()
+      date: currentDate
     })
     .then((response) => {
       this.word = response.data
+console.log(`WORD: ${this.word}`);
     })
     .then(() => {
       this.wordleGame = new WordleGame(this.word)

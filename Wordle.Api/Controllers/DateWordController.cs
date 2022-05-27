@@ -23,14 +23,15 @@ public class DateWordController : Controller
 
     [Route("[action]")]
     [HttpPost]
-    public string? GetDailyWord(DateTime date)
+    public string? GetDailyWord([FromBody] DatePost incomingDate)
     {
         //Sanitize the date by dropping time data
-        date = date.Date;
-        if (date.ToUniversalTime() >= System.DateTime.Today.ToUniversalTime().AddDays(0.5))
+        if (incomingDate.Date is null)
         {
-            return null;
+            throw new ArgumentException("Date passed in is null");
         }
+        DateTime date = DateTime.Parse(incomingDate.Date).ToUniversalTime().Date;
+
         //Check if the day has a word in the database
         if (_cache.TryGetValue(date, out var word))
         {
@@ -87,9 +88,14 @@ public class DateWordController : Controller
     {
         return _context.DateWords
             .OrderByDescending(DW => DW.Date)
-            .Take(10);
+            .Take(10)
+            ;
     }
 
+    public class DatePost
+    {
+        public string? Date { get; set; }
+    }
 }
 
 internal record struct NewStruct(object Item1, object Item2)
