@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wordle.Api.Controllers;
+using static Wordle.Api.Controllers.DateWordController;
 
 namespace Wordle.Api.Tests;
 [TestClass]
@@ -22,10 +23,14 @@ public class DailyWordTests : DatabaseBaseTests
 
         DateWordController sut = new(context, new Services.GameService(context));
 
-        string? word = sut.GetDailyWord(new DateTime(2020, 1, 1));
+        DatePost date1 = new();
+        date1.Date = new DateTime(2020, 1, 1).ToString();
+        string? word = sut.GetDailyWord(date1);
         Assert.IsNotNull(word);
         Assert.AreEqual<int>(5, word.Length);
-        string? word2 = sut.GetDailyWord(new DateTime(2020, 1, 1));
+        DatePost date2 = new();
+        date2.Date = new DateTime(2020, 1, 1).ToString();
+        string? word2 = sut.GetDailyWord(date2);
         Assert.AreEqual<string?>(word, word2);
     }
 }
