@@ -231,7 +231,7 @@ export default class Game extends Vue {
   }
 
   // get random num to pick ad
-  getRandomInt(min, max) {
+  getRandomInt(min: number, max: number) {
     min = 1
     max = 2
     return Math.floor(Math.random() * (max - min + 1)) + min // The maximum is inclusive and the minimum is inclusive
