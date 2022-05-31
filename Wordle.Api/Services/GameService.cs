@@ -16,7 +16,7 @@ namespace Wordle.Api.Services
         {
             _context = context;
         }
-        
+
         public Game CreateGame(Guid playerGuid, GameTypeEnum gameType, DateTime? date = null)
         {
             var player = _context.Players
@@ -25,7 +25,7 @@ namespace Wordle.Api.Services
             {
                 player = new Player { Guid = playerGuid };
                 _context.Players.Add(player);
-                _context.SaveChanges();
+                //_context.SaveChanges();
             }
 
             //Return the game if it already exists
@@ -33,14 +33,13 @@ namespace Wordle.Api.Services
             if (gameType == GameTypeEnum.WordOfTheDay)
             {
                 if (date == null) throw new ArgumentException("Date cannot be null if the game type is WordOfTheDay");
-                
+
                 var existingGame = _context.Games
                     .Include(x => x.Guesses)
                     .Include(x => x.Word)
                     .FirstOrDefault(x => x.PlayerId == player.PlayerId &&
                                          x.GameType == GameTypeEnum.WordOfTheDay &&
-                                         x.DateEnded.HasValue &&
-                                         x.WordDate == date.Value);
+                                         x.WordDate == date.Value.Date);
                 if (existingGame is not null)
                 {
                     return existingGame;
@@ -57,15 +56,15 @@ namespace Wordle.Api.Services
             var game = new Game()
             {
                 WordId = word.WordId,
-                PlayerId = player.PlayerId,
+                Player = player,
                 DateStarted = DateTime.UtcNow,
                 GameType = gameType,
-                WordDate = date
+                WordDate = date?.Date
             };
             _context.Games.Add(game);
 
             _context.SaveChanges();
-
+            game.Word = word;
             return game;
 
         }
@@ -143,5 +142,46 @@ namespace Wordle.Api.Services
                 }
             }
         }
+
+        public bool SubmitGuess(string guess, DateTimeOffset localTime, int gameId, Guid playerGuid)
+        {
+            bool gameComplete;
+            //Validate gameId
+            var game = _context.Games
+                .Include(x => x.Word) //Include is required to access information from convenience methods
+                .FirstOrDefault(x => (x.GameId == gameId) && (x.Player.Guid == playerGuid));
+
+            if (game is null) throw new ArgumentException("Game does not exist");
+            if (game.DateEnded.HasValue) throw new ArgumentException("Game has already ended");
+
+            Guess incomingGuess = new()
+            {
+                Value = guess,
+                ClientDate = localTime,
+                GameId = gameId,
+                Date = DateTime.UtcNow
+            };
+
+            if (gameComplete = (game.Word.Value.ToLower() == guess.ToLower()))
+            {
+                incomingGuess.IsCorrect = true;
+                game.DateEnded = DateTime.UtcNow;
+            }
+
+            _context.Guesses.Add(incomingGuess);
+            _context.SaveChanges();
+
+            return gameComplete;
+        }
+        public IEnumerable<string?> GetWotdPlayers(int dailyWordId)
+        {
+            var dateWord = _context.DateWords
+                .Include(x => x.Word.Games)
+                .ThenInclude(x => x.Player)
+                .FirstOrDefault(x => x.WordId == dailyWordId);
+            if (dateWord is null) throw new ArgumentException("DateWord does not exist");
+            return dateWord.Word.Games.Select(x => x.Player.Name);
+        }
     }
+
 }
