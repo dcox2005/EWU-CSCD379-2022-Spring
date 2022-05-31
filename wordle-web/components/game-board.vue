@@ -1,5 +1,17 @@
 <template>
-  <v-card class="ma-5 py-1" max-width="600px" flat style = "background: linear-gradient(180deg, rgba(13,97,171,.85) 20%, rgba(5,50,90,.5) 60%, rgba(173,215,249,.5) 100%)">
+  <v-card
+    class="ma-5 py-1"
+    max-width="600px"
+    flat
+    style="
+      background: linear-gradient(
+        180deg,
+        rgba(13, 97, 171, 0.85) 20%,
+        rgba(5, 50, 90, 0.5) 60%,
+        rgba(173, 215, 249, 0.5) 100%
+      );
+    "
+  >
     <v-container>
       <v-row v-for="row in wordleGame.maxGuesses" :key="row" justify="center">
         <v-col

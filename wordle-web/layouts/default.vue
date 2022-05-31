@@ -62,7 +62,6 @@
           >
         </v-list-item>
 
-
         <v-list-item>
           <v-btn text block>
             <SettingsDialog />

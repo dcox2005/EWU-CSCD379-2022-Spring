@@ -3,7 +3,7 @@
     <v-container class="overflow-hidden" fluid>
       <v-row justify="center">
         <v-col>
-            <v-img src="AD.png" />
+          <v-img src="AD.png" />
         </v-col>
       </v-row>
     </v-container>

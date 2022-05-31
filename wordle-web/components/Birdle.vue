@@ -1,3 +1,3 @@
 <template>
-  <v-img src="BIRDLE.png"/>
+  <v-img src="BIRDLE.png" />
 </template>

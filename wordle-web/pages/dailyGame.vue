@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background: #064A80">
+  <v-app style="background: #064a80">
     <v-container>
       <v-row justify="center">
         <v-col cols="12" sm="5"></v-col>
@@ -60,8 +60,12 @@
       </v-row>
       <v-row>
         <v-col cols="12" sm="3"></v-col>
-        <v-col cols="12" sm="6" class="mt-0 mb-0 pt-0 pb-0 text-center display-2">
-          DAILY<NotWordleLogo /> 
+        <v-col
+          cols="12"
+          sm="6"
+          class="mt-0 mb-0 pt-0 pb-0 text-center display-2"
+        >
+          DAILY<NotWordleLogo />
         </v-col>
         <v-col cols="12" sm="3">
           <v-card-text align="right">
@@ -95,7 +99,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { WordsService } from '~/scripts/wordsService'
 import { GameState, WordleGame } from '~/scripts/wordleGame'
 import KeyBoard from '@/components/keyboard.vue'
 import GameBoard from '@/components/game-board.vue'
@@ -109,35 +112,32 @@ export default class Game extends Vue {
   startTime: number = 0
   endTime: number = 0
   intervalID: any
-  word: string = "boots"
+  word: string = 'boots'
   wordleGame = new WordleGame(this.word)
 
   mounted() {
     this.retrieveUserName()
     this.startTimer()
-    // let date = new Date().toISOString();
-// console.log(`Date UTC: ${date}`);
     this.getDailyWordGame()
   }
 
-  getDailyWordGame()
-  {
-    let currentDate = new Date().toJSON();
-    this.$axios.post('/DateWord/GetDailyWord', {
-      // date: new Date().toUTCString()
-      date: currentDate
-    })
-    .then((response) => {
-      this.word = response.data
-console.log(`WORD: ${this.word}`);
-    })
-    .then(() => {
-      this.wordleGame = new WordleGame(this.word)
-    });
+  getDailyWordGame() {
+    const currentDate = new Date().toJSON()
+    this.$axios
+      .post('/DateWord/GetDailyWord', {
+        date: currentDate,
+      })
+      .then((response) => {
+        this.word = response.data
+        console.log(`WORD: ${this.word}`) // left intentially to asses daily word is always same
+      })
+      .then(() => {
+        this.wordleGame = new WordleGame(this.word)
+      })
   }
 
   resetGame() {
-    this.getDailyWordGame();
+    this.getDailyWordGame()
     this.timeInSeconds = 0
     this.startTimer()
   }

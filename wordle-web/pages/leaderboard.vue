@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background: #064A80">
+  <v-app style="background: #064a80">
     <v-container fluid justify-center>
       <v-row justify="center">
         <v-col cols="12" lg="6">
@@ -34,24 +34,22 @@
                 </tbody>
               </v-simple-table>
             </v-card-text>
-      
+
             <v-card-actions>
               <v-row>
-
                 <v-col cols="12" md="6" align="center">
-
-                  <v-btn color="primary" @click="getAllPlayers"> Get All Players </v-btn>
+                  <v-btn color="primary" @click="getAllPlayers">
+                    Get All Players
+                  </v-btn>
                 </v-col>
                 <v-col cols="12" md="6" align="center">
                   <v-btn color="primary" @click="getTop10Players">
                     Get Top 10 Players
                   </v-btn>
-
                 </v-col>
               </v-row>
             </v-card-actions>
           </v-card>
-
         </v-col>
       </v-row>
     </v-container>

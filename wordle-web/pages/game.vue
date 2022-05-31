@@ -1,111 +1,115 @@
 <template>
-  <v-app style="background: #064A80">
-  <v-container fluid fill-height>
-    <v-container v-if="!isLoaded">
-      <v-row justify="center">
-        <v-card loading>
-          <v-card-title class="justify-center">
-            You're being exploited for ad revenue, please standby...
-          </v-card-title>
-          <div v-if="getRandomInt() == 1">
-            <PrerollAd />
-          </div>
-          <div v-else-if="getRandomInt()==2">
-            <PrerollAd2 />
-          </div>
-        </v-card>
-      </v-row>
-    </v-container>
-    <v-container v-if="isLoaded">
-      <v-row justify="center">
-        <v-col cols="12" sm="5"></v-col>
-        <v-col cols="12" sm="2" class="mt-0 mb-0 pt-0 pb-0">
-          <v-tooltip bottom>
-            <template #activator="{ on, attrs }">
-              <v-container>
-                <v-row justify="center">
-                  <v-btn
-                    color="primary"
-                    x-small
-                    nuxt
-                    to="/"
-                    fab
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    <v-icon>mdi-home</v-icon>
+  <v-app style="background: #064a80">
+    <v-container fluid fill-height>
+      <v-container v-if="!isLoaded">
+        <v-row justify="center">
+          <v-card loading>
+            <v-card-title class="justify-center">
+              You're being exploited for ad revenue, please standby...
+            </v-card-title>
+            <div v-if="getRandomInt() == 1">
+              <PrerollAd />
+            </div>
+            <div v-else-if="getRandomInt() == 2">
+              <PrerollAd2 />
+            </div>
+          </v-card>
+        </v-row>
+      </v-container>
+      <v-container v-if="isLoaded">
+        <v-row justify="center">
+          <v-col cols="12" sm="5"></v-col>
+          <v-col cols="12" sm="2" class="mt-0 mb-0 pt-0 pb-0">
+            <v-tooltip bottom>
+              <template #activator="{ on, attrs }">
+                <v-container>
+                  <v-row justify="center">
+                    <v-btn
+                      color="primary"
+                      x-small
+                      nuxt
+                      to="/"
+                      fab
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      <v-icon>mdi-home</v-icon>
+                    </v-btn>
+                  </v-row>
+                </v-container>
+              </template>
+              <span> Go Home </span>
+            </v-tooltip>
+          </v-col>
+          <v-col cols="12" sm="5" class="d-flex flex-row-reverse">
+            <v-dialog v-model="dialog" justify-end persistent max-width="600px">
+              <template #activator="{ on, attrs }">
+                <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                  {{ playerName }}
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-text>
+                  <v-text-field
+                    v-model="playerName"
+                    type="text"
+                    placeholder="Guest"
+                    color="#3A96B5"
+                  ></v-text-field>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="dialog = false">
+                    Close
                   </v-btn>
-                </v-row>
-              </v-container>
-            </template>
-            <span> Go Home </span>
-          </v-tooltip>
-        </v-col>
-        <v-col cols="12" sm="5" class="d-flex flex-row-reverse">
-          <v-dialog v-model="dialog" justify-end persistent max-width="600px">
-            <template #activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                {{ playerName }}
-              </v-btn>
-            </template>
-            <v-card>
-              <v-card-text>
-                <v-text-field
-                  v-model="playerName"
-                  type="text"
-                  placeholder="Guest"
-                  color="#3A96B5"
-                ></v-text-field>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="dialog = false">
-                  Close
-                </v-btn>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click=";(dialog = false), setUserName(playerName)"
-                >
-                  Save
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="12" sm="3"></v-col>
-        <v-col cols="12" sm="6" class="mt-0 mb-0 pt-0 pb-0">
-          <NotWordleLogo />
-        </v-col>
-        <v-col cols="12" sm="3">
-          <v-card-text align="right">
-            <v-icon>mdi-timer</v-icon>
-            {{ displayTimer() }}
-          </v-card-text>
-        </v-col>
-      </v-row>
-      <v-row justify="center" class="mt-10">
-        <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
-          {{ gameResult.text }}
-          <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
-        </v-alert>
-      </v-row>
+                  <v-btn
+                    color="blue darken-1"
+                    text
+                    @click=";(dialog = false), setUserName(playerName)"
+                  >
+                    Save
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" sm="3"></v-col>
+          <v-col cols="12" sm="6" class="mt-0 mb-0 pt-0 pb-0">
+            <NotWordleLogo />
+          </v-col>
+          <v-col cols="12" sm="3">
+            <v-card-text align="right">
+              <v-icon>mdi-timer</v-icon>
+              {{ displayTimer() }}
+            </v-card-text>
+          </v-col>
+        </v-row>
+        <v-row justify="center" class="mt-10">
+          <v-alert
+            v-if="wordleGame.gameOver"
+            width="80%"
+            :type="gameResult.type"
+          >
+            {{ gameResult.text }}
+            <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+          </v-alert>
+        </v-row>
 
-      <v-row justify="center">
-        <game-board :wordleGame="wordleGame" />
-      </v-row>
-      <v-row justify="center">
-        <keyboard :wordleGame="wordleGame" />
-      </v-row>
+        <v-row justify="center">
+          <game-board :wordleGame="wordleGame" />
+        </v-row>
+        <v-row justify="center">
+          <keyboard :wordleGame="wordleGame" />
+        </v-row>
+      </v-container>
+      <v-col>
+        <v-card-title>
+          <Birdle-icon />
+        </v-card-title>
+      </v-col>
     </v-container>
-    <v-col>
-      <v-card-title>
-        <Birdle-icon />
-      </v-card-title>
-    </v-col>
-  </v-container>
   </v-app>
 </template>
 
@@ -225,12 +229,13 @@ export default class Game extends Vue {
     }`
     return text
   }
-  //get random num to pick ad
+
+  // get random num to pick ad
   getRandomInt(min, max) {
-  min = 1;
-  max = 2;
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
-  } 
+    min = 1
+    max = 2
+    return Math.floor(Math.random() * (max - min + 1)) + min // The maximum is inclusive and the minimum is inclusive
+  }
 
   endGameSave() {
     this.$axios.post('/api/Players', {

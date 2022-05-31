@@ -48,10 +48,7 @@
       </v-col>
 
       <v-col cols="12" sm="2" align="center">
-        <v-btn
-          :disabled="wordleGame.gameOver"
-          @click="removeLetter"
-        >
+        <v-btn :disabled="wordleGame.gameOver" @click="removeLetter">
           <v-icon>mdi-backspace</v-icon>
         </v-btn>
       </v-col>
@@ -146,28 +143,27 @@ export default class KeyBoard extends Vue {
     return Letter.getColorCode(LetterStatus.Unknown)
   }
 
-
-  btnProps()  {
-    let props = {
+  btnProps() {
+    const props = {
       'x-small': false,
-      'small': false,
-      'large': false,
-      'x-large': false
-      }
-    switch(this.$vuetify.breakpoint.name) {
+      small: false,
+      large: false,
+      'x-large': false,
+    }
+    switch (this.$vuetify.breakpoint.name) {
       case 'xs':
         props['x-small'] = true
         break
       case 'sm':
-        props['small'] = true
-        break  
-      case 'lg':
-        props['large'] = true
+        props.small = true
         break
-        case 'xl':
+      case 'lg':
+        props.large = true
+        break
+      case 'xl':
         props['x-large'] = true
-        break 
-      default: 
+        break
+      default:
     }
     return props
   }
