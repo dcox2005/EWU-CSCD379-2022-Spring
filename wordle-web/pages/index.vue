@@ -8,7 +8,7 @@
               <NotWordleLogo />
             </v-card-title>
             <v-card-title class="justify-center">
-              <Birdle />
+              <BirdleImage />
             </v-card-title>
             <v-card color="transparent" flat>
               <v-card-actions class="justify-center">
