@@ -8,7 +8,7 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
-      <v-btn icon @click="toggleDialog">
+      <v-btn>
         <UserLogin />
       </v-btn>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">

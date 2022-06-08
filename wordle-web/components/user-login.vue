@@ -1,12 +1,46 @@
 <template>
   <div class>
     <v-container @click="toggleDialog">
+    {{userName}}
       <v-icon>mdi-account-circle</v-icon>
     </v-container>
     <v-dialog v-model="dialog" width="450">
       <v-card>
         <v-container>
           <v-card-title>User Login</v-card-title>
+            <v-form method="post" @submit.prevent="submitLogIn">
+              <v-container>
+                <v-row>
+                  <v-col 
+                    cols="12"
+                  >
+                    <v-text-field
+                      v-model="userEmail"
+                      label="User E-Mail"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="password"
+                      label="Password"
+                      required
+                    >
+                    </v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+              <v-row>
+                <v-col cols="12" md="3">
+                  <v-btn type="submit">Log In</v-btn>
+                </v-col>
+                <v-col cols="12" md="3">
+                </v-col>
+                <v-col cols="12" md="3">
+                  <v-btn @click="clearToken()">Log Out</v-btn>
+                </v-col>
+              </v-row>
+            </v-form>
         </v-container>
       </v-card>
     </v-dialog>
@@ -15,13 +49,66 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import { JWT } from '~/scripts/jwt'
 
 @Component({})
 export default class UserLogin extends Vue {
   dialog = false
+  userName: string = "Guest"
+  userEmail: string = '';
+  password: string = '';
 
   toggleDialog() {
     this.dialog = !this.dialog
   }
+
+  mounted()
+  {
+    const token = localStorage.getItem('token');
+    if (token == null  || token == undefined)
+    {
+      this.userName = "Guest"
+    }
+    else
+    {
+      JWT.setToken(token,this.$axios)
+      this.userName = JWT.tokenData.UserName;
+      this.userEmail = JWT.tokenData.sub;
+    }
+    localStorage.setItem('userName', this.userName)
+  }
+
+  retrieveToken()
+  {
+    this.$axios
+        .post('Token/GetToken', {
+          username: this.userEmail,
+          password: this.password,
+        })
+        .then((result) => 
+        {
+          JWT.setToken(result.data.token,this.$axios);
+          this.userName = JWT.tokenData.UserName;
+          localStorage.setItem('token', result.data.token);
+          localStorage.setItem('userName', this.userName);
+        });
+    this.$forceUpdate();
+  }
+    //     username: 'Admin@intellitect.com',
+    //     password: 'P@ssw0rd123',
+  submitLogIn()
+  {
+    this.retrieveToken();
+    this.password = "";
+  }
+
+  clearToken()
+  {
+    this.userName = "Guest";
+    localStorage.setItem('userName', this.userName);
+    localStorage.removeItem('token');
+    this.$forceUpdate();
+  }
+
 }
 </script>
