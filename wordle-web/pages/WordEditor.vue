@@ -2,11 +2,8 @@
   <v-container fluid fill-height justify-center>
     <v-card>
       <v-card-title class="display-3 justify-center">
-        Leader Board
-      </v-card-title>
-      <v-card-text class="text-center">
         Word Editor
-      </v-card-text>
+      </v-card-title>
       <v-card-text>
         <v-simple-table>
           <thead>
