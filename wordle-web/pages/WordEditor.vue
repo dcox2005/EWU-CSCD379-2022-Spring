@@ -38,19 +38,47 @@ export default class WordEditor extends Vue {
     searchParameter: String = "";
     words: any = [];
 
-    created(){
-
+    mounted(){
+        this.getWordList();
     }
 
     getWordList()
     {
-        this.$axios.post('/api/Word/GetWordSearchPageList', {
-            searchParameter: this.searchParameter,
+        if (this.searchParameter === "")
+        {
+            this.$axios.post('/api/Word/GetPageWordList', {
             page: this.pageNumber,
             pageSize: this.pageSize,
-        }).then((response) => {
+        })
+        .then((response) => {
+console.log(`post finished. here is the response`);
+console.log(`${response.data}`);
             this.words = response.data
+        })
+        .then( () =>
+        {
+
+            console.log(`${this.words}`)
         });
+        }
+        else
+        {
+            this.$axios.post('/api/Word/GetWordSearchPageList', {
+                searchParameter: this.searchParameter,
+                page: this.pageNumber,
+                pageSize: this.pageSize,
+            })
+            .then((response) => {
+    console.log(`post finished. here is the response`);
+    console.log(`${response.data}`);
+                this.words = response.data
+            })
+            .then( () =>
+            {
+    
+                console.log(`${this.words}`)
+            });
+        }
 
     }
 }
