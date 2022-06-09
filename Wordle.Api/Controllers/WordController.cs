@@ -31,9 +31,9 @@ public class WordController : ControllerBase
 
     [Route("[action]")]
     [HttpPost]
-    public IEnumerable<Word> GetPageWordList(int page, int pageSize)
+    public IEnumerable<Word> GetPageWordList([FromBody] PagePost pagePost)
     {
-        return _service.GetPageWordList(page, pageSize);
+        return _service.GetPageWordList(pagePost.Page, pagePost.PageSize);
     }
 
     [Route("[action]")]
@@ -45,8 +45,22 @@ public class WordController : ControllerBase
 
     [Route("[action]")]
     [HttpPost]
-    public IEnumerable<Word> GetWordSearchPageList(String searchParameter, int page, int pageSize)
+    public IEnumerable<Word> GetWordSearchPageList([FromBody] SearchPagePost searchPagePost)
     {
-        return _service.GetWordSearchPaggedList(searchParameter, page, pageSize);
+        return _service.GetWordSearchPaggedList(searchPagePost.SearchParameter, searchPagePost.Page, searchPagePost.PageSize);
+    }
+
+    public class PagePost
+    {
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+    }
+
+    public class SearchPagePost
+    {
+        public string? SearchParameter { get; set; }
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+
     }
 }

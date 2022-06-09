@@ -16,7 +16,7 @@
           <tbody>
             <tr v-for="(word, wordId) in words" :key="wordId">
               <td>{{ word.value }}</td>
-              <td style="text-align: center">{{ words.common }}</td>
+              <td style="text-align: center">{{printWordCommon(word.common)}}</td>
               <td style="text-align: center">
               </td>
             </tr>
@@ -50,15 +50,8 @@ export default class WordEditor extends Vue {
             page: this.pageNumber,
             pageSize: this.pageSize,
         })
-        .then((response) => {
-console.log(`post finished. here is the response`);
-console.log(`${response.data}`);
-            this.words = response.data
-        })
-        .then( () =>
-        {
-
-            console.log(`${this.words}`)
+        .then((result) => {
+            this.words = result.data
         });
         }
         else
@@ -69,17 +62,21 @@ console.log(`${response.data}`);
                 pageSize: this.pageSize,
             })
             .then((response) => {
-    console.log(`post finished. here is the response`);
-    console.log(`${response.data}`);
                 this.words = response.data
-            })
-            .then( () =>
-            {
-    
-                console.log(`${this.words}`)
             });
         }
+    }
 
+    printWordCommon(commonWord: any)
+    {
+        if(commonWord)
+        {
+            return "true";
+        }
+        else
+        {
+            return "false";
+        }
     }
 }
 </script>
