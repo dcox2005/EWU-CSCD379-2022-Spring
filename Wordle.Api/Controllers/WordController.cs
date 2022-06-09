@@ -23,29 +23,29 @@ public class WordController : ControllerBase
     }
 
     [Route("[action]")]
-    [HttpGet]
+    [HttpPost]
     public IEnumerable<Word> GetSizedWordList(int size)
     {
         return _service.GetSizedWordList(size);
     }
 
     [Route("[action]")]
-    [HttpGet]
+    [HttpPost]
     public IEnumerable<Word> GetPageWordList(int page, int pageSize)
     {
         return _service.GetPageWordList(page, pageSize);
     }
 
     [Route("[action]")]
-    [HttpGet]
+    [HttpPost]
     public IEnumerable<Word> GetWordSearch(String searchParameter)
     {
         return _service.GetWordSearch(searchParameter);
     }
 
     [Route("[action]")]
-    [HttpGet]
-    public IEnumerable<Word> GetWordSearchPaggedList(String searchParameter, int page, int pageSize)
+    [HttpPost]
+    public IEnumerable<Word> GetWordSearchPageList(String searchParameter, int page, int pageSize)
     {
         return _service.GetWordSearchPaggedList(searchParameter, page, pageSize);
     }
