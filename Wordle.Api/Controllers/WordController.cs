@@ -93,6 +93,16 @@ public class WordController : ControllerBase
         return _service.DeleteWord(incomingWord.Word);
     }
 
+    [Route("[action]")]
+    [HttpPost]
+    public bool MakeCommon([FromBody] IncomingWord incomingWord)
+    {
+        if (incomingWord.Word is null)
+            return false;
+
+        return _service.MakeCommon(incomingWord.Word);
+    }
+
     public class IncomingWord
     {
         public string? Word { get; set; }
