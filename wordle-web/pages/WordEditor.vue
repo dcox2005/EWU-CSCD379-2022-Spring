@@ -10,7 +10,7 @@
         <v-alert v-if="wordToDeleteSet" width="80%" :type="wordToDeleteResultType">
           {{ wordToDeleteResultText }}
         </v-alert>
-      <v-form method="post" @submit.prevent="addWord">
+      <v-form v-if="authorizedToAddDelete" method="post" @submit.prevent="addWord">
               <v-container>
                 <v-row>
                   <v-col 
@@ -58,14 +58,14 @@
             <tr>
               <th style="text-align: center">Word</th>
               <th style="text-align: center">Common</th>
-              <th v-if="authorizedToDelete" style="text-align: center"></th>
+              <th v-if="authorizedToAddDelete" style="text-align: center"></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(word, wordId) in words" :key="wordId">
               <td style="text-align: center">{{ word.value }}</td>
               <td style="text-align: center">{{printWordCommon(word.common)}}</td>
-              <td v-if="authorizedToDelete" style="text-align: center">
+              <td v-if="authorizedToAddDelete" style="text-align: center">
                 <v-card-actions @click="deleteWord(word.value)">
                   <v-icon>mdi-trash-can-outline</v-icon>
                 </v-card-actions>
@@ -96,22 +96,22 @@ export default class WordEditor extends Vue {
     wordToDeleteSet: boolean = false;
     wordToDeleteResultType: String = `Success`;
     wordToDeleteResultText: String = "";
-    authorizedToDelete: boolean = false;
+    authorizedToAddDelete: boolean = false;
 
     mounted(){
       this.getWordList();
       if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
       {
-        this.authorizedToDelete = true;
+        this.authorizedToAddDelete = true;
       }
       setInterval(() => {
         if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
         {
-          this.authorizedToDelete = true;
+          this.authorizedToAddDelete = true;
         }
         else
         {
-          this.authorizedToDelete = false;
+          this.authorizedToAddDelete = false;
         }
       }, 5000)
     }
