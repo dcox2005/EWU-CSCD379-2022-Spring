@@ -71,6 +71,11 @@
             <tr v-for="(word, wordId) in words" :key="wordId">
               <td style="text-align: center">{{ word.value }}</td>
               <td style="text-align: center">{{printWordCommon(word.common)}}</td>
+              <td style="text-align: center">
+                <v-card-actions @click="makeCommon(word.common)">
+                  <v-icon>mdi-check-bold</v-icon>
+                  </v-card-actions>
+              </td>
               <td v-if="authorizedToAddDelete" style="text-align: center">
                 <v-card-actions @click="deleteWord(word.value)">
                   <v-icon>mdi-trash-can-outline</v-icon>
@@ -291,6 +296,10 @@ export default class WordEditor extends Vue {
       }
       this.getWordList();
       setTimeout(() => {this.wordToDeleteSet = false}, 5000)
+    }
+
+    makeCommon(){
+      
     }
 }
 </script>
