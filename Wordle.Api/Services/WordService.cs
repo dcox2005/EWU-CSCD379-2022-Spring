@@ -121,4 +121,28 @@ public class WordService
         return wordAdded;
     }
 
+    public bool DeleteWord(String incomingWord)
+    {
+        bool wordDeleted = false;
+        if (incomingWord is null)
+        {
+            throw new ArgumentNullException(nameof(incomingWord));
+        }
+
+        if (incomingWord.Length < 5 || incomingWord.Length > 5)
+        {
+            return wordDeleted;
+        }
+
+        var result = _context.Words
+            .FirstOrDefault(x => x.Value.ToLower().Equals(incomingWord.ToLower()));
+        if (result is not null)
+        {
+            wordDeleted = true;
+            _context.Words.Remove(result);
+            _context.SaveChanges();
+        }
+        return wordDeleted;
+    }
+
 }

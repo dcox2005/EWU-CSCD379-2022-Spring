@@ -97,7 +97,8 @@ export default class UserLogin extends Vue {
   Random: ${JWT.tokenData.Random}
   UserId: ${JWT.tokenData.UserId}
   UserName: ${JWT.tokenData.UserName}
-  BirthDate: ${JWT.tokenData.BirthDate}
+  BirthDateString: ${JWT.tokenData.BirthDate}
+  Age: ${JWT.age}
   aud: ${JWT.tokenData.aud}
   exp: ${JWT.tokenData.exp}
   iss: ${JWT.tokenData.iss}
@@ -116,6 +117,7 @@ export default class UserLogin extends Vue {
   clearToken()
   {
     this.userName = "Guest";
+    JWT.reset();
     localStorage.setItem('userName', this.userName);
     localStorage.removeItem('token');
     this.$forceUpdate();

@@ -7,6 +7,9 @@
       <v-alert v-if="newWordSet" width="80%" :type="newWordResultType">
           {{ newWordResultText }}
         </v-alert>
+        <v-alert v-if="wordToDeleteSet" width="80%" :type="wordToDeleteResultType">
+          {{ wordToDeleteResultText }}
+        </v-alert>
       <v-form method="post" @submit.prevent="addWord">
               <v-container>
                 <v-row>
@@ -55,15 +58,17 @@
             <tr>
               <th style="text-align: center">Word</th>
               <th style="text-align: center">Common</th>
-              <th style="text-align: center"></th>
+              <th v-if="authorizedToDelete" style="text-align: center"></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(word, wordId) in words" :key="wordId">
               <td style="text-align: center">{{ word.value }}</td>
               <td style="text-align: center">{{printWordCommon(word.common)}}</td>
-              <td style="text-align: center">
-                <v-icon>mdi-trash-can-outline</v-icon>
+              <td v-if="authorizedToDelete" style="text-align: center">
+                <v-card-actions @click="deleteWord(word.value)">
+                  <v-icon>mdi-trash-can-outline</v-icon>
+                </v-card-actions>
               </td>
             </tr>
           </tbody>
@@ -75,6 +80,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { JWT } from '~/scripts/jwt';
 
 
 @Component({})
@@ -84,13 +90,30 @@ export default class WordEditor extends Vue {
     searchParameter: String = "";
     words: any = [];
     newWord: String = "";
-    wordToDelete: String = "";
     newWordSet: boolean = false;
     newWordResultType: String = `Success`;
     newWordResultText: String = "";
+    wordToDeleteSet: boolean = false;
+    wordToDeleteResultType: String = `Success`;
+    wordToDeleteResultText: String = "";
+    authorizedToDelete: boolean = false;
 
     mounted(){
-        this.getWordList();
+      this.getWordList();
+      if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
+      {
+        this.authorizedToDelete = true;
+      }
+      setInterval(() => {
+        if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
+        {
+          this.authorizedToDelete = true;
+        }
+        else
+        {
+          this.authorizedToDelete = false;
+        }
+      }, 5000)
     }
 
     firstPage()
@@ -221,6 +244,47 @@ export default class WordEditor extends Vue {
       }
       this.getWordList();
       setTimeout(() => {this.newWordSet = false}, 5000)
+    }
+
+    deleteWord(wordToDelete: String)
+    {
+      if (wordToDelete.length < 5 || wordToDelete.length > 5)
+      {
+        this.wordToDeleteResultType = 'warning';
+        this.wordToDeleteSet = true;
+        this.wordToDeleteResultText = 'Word must be exactly 5 letters!'
+      }
+      else
+      {
+        let deleteResults = false;
+        this.$axios.post('/api/Word/DeleteWord', {
+            word: wordToDelete,
+        })
+        .then((result) => {
+            deleteResults = result.data
+        })
+        .then(() => {
+          if (deleteResults)
+          {
+            this.wordToDeleteResultType = 'success';
+            this.wordToDeleteResultText = 'Thy will be done!'
+            this.$forceUpdate();
+          }
+          else
+          {
+            this.wordToDeleteResultType = 'warning';
+            this.wordToDeleteResultText = 'Word not deleted. Error occurred.'
+          }
+          this.wordToDeleteSet = true;
+        })
+        .catch(() => {
+          this.wordToDeleteResultType = 'warning';
+          this.wordToDeleteResultText = 'Error occurred. Word not deleted.'
+          this.wordToDeleteSet = true;
+        });
+      }
+      this.getWordList();
+      setTimeout(() => {this.wordToDeleteSet = false}, 5000)
     }
 }
 </script>
