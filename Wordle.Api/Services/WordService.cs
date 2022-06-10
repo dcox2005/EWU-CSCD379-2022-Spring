@@ -93,4 +93,32 @@ public class WordService
         return result;
     }
 
+    public bool AddWord(String incomingWord)
+    {   
+        bool wordAdded = false;
+        if (incomingWord is null)
+        {
+            throw new ArgumentNullException(nameof(incomingWord));
+        }
+
+        if (incomingWord.Length < 5 || incomingWord.Length > 5)
+        {
+            return wordAdded;
+        }
+        
+        var result = _context.Words
+            .FirstOrDefault(x => x.Value.ToLower().Equals(incomingWord.ToLower()));
+        if (result is null)
+        {
+            wordAdded = true;
+            _context.Words.Add(new Word
+            {
+                Value = incomingWord,
+                Common = false
+            });
+            _context.SaveChanges();
+        }
+        return wordAdded;
+    }
+
 }
