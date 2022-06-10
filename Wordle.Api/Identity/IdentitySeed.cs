@@ -25,6 +25,10 @@ namespace Wordle.Api.Identity
             {
                 await roleManager.CreateAsync(new IdentityRole(Roles.Grant));
             }
+            if (!await roleManager.RoleExistsAsync(Roles.MasterOfTheUniverse))
+            {
+                await roleManager.CreateAsync(new IdentityRole(Roles.MasterOfTheUniverse));
+            }
         }
 
         private static async Task SeedAdminUserAsync(UserManager<AppUser> userManager)
@@ -32,10 +36,11 @@ namespace Wordle.Api.Identity
             // Seed Admin User
             if (await userManager.FindByNameAsync("Admin@intellitect.com") == null)
             {
-                AppUser user = new AppUser
+                AppUser user = new()
                 {
                     UserName = "Admin@intellitect.com",
                     Email = "Admin@intellitect.com",
+                    BirthDate = new DateTime(2021, 01, 20),
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "P@ssw0rd123").Result;
@@ -44,6 +49,43 @@ namespace Wordle.Api.Identity
                 {
                     await userManager.AddToRoleAsync(user, Roles.Admin);
                     await userManager.AddToRoleAsync(user, Roles.Grant);
+                }
+            }
+
+            if (await userManager.FindByNameAsync("Master@intellitect.com") == null)
+            {
+                AppUser user = new()
+                {
+                    UserName = "Master@intellitect.com",
+                    Email = "Master@intellitect.com",
+                    BirthDate = new DateTime(2021, 09, 18),
+                };
+
+                IdentityResult result = userManager.CreateAsync(user, "P@ssw0rd123").Result;
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, Roles.Admin);
+                    await userManager.AddToRoleAsync(user, Roles.MasterOfTheUniverse);
+                }
+            }
+
+            if (await userManager.FindByNameAsync("TheTrueMasterOfTheUniverse@intellitect.com") == null)
+            {
+                AppUser user = new()
+                {
+                    UserName = "TheTrueMasterOfTheUniverse@intellitect.com",
+                    Email = "TheTrueMasterOfTheUniverse@intellitect.com",
+                    BirthDate = new DateTime(1987, 06, 24),
+                };
+
+                IdentityResult result = userManager.CreateAsync(user, "P@ssw0rd123").Result;
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, Roles.Admin);
+                    await userManager.AddToRoleAsync(user, Roles.Grant);
+                    await userManager.AddToRoleAsync(user, Roles.MasterOfTheUniverse);
                 }
             }
         }

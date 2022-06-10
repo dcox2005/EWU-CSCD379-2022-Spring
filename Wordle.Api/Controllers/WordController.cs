@@ -47,6 +47,10 @@ public class WordController : ControllerBase
     [HttpPost]
     public IEnumerable<Word> GetWordSearchPageList([FromBody] SearchPagePost searchPagePost)
     {
+        if(searchPagePost.SearchParameter is null)
+        {
+            return _service.GetPageWordList(searchPagePost.Page, searchPagePost.PageSize); ;
+        }
         return _service.GetWordSearchPaggedList(searchPagePost.SearchParameter, searchPagePost.Page, searchPagePost.PageSize);
     }
 

@@ -1,4 +1,6 @@
-﻿public class JwtConfiguration
+﻿namespace Wordle.Api.Identity;
+
+public class JwtConfiguration
 {
     public string Secret { get; set; } = null!;
     public string Issuer { get; set; } = null!;
