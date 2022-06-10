@@ -106,10 +106,10 @@ export default class WordEditor extends Vue {
 
     mounted(){
       this.getWordList();
-      // if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
-      // {
-      //   this.authorizedToAddDelete = true;
-      // }
+      if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
+      {
+        this.authorizedToAddDelete = true;
+      }
       setInterval(() => {
         if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
         {

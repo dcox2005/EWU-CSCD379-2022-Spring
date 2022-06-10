@@ -64,10 +64,12 @@ export default class UserLogin extends Vue {
 
   mounted()
   {
-    const token = localStorage.getItem('token');
+    var token = localStorage.getItem('token');
     if (token == null  || token == undefined)
     {
-      this.userName = "Guest"
+      this.userName = "Guest";
+      token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIiLCJqdGkiOiIiLCJVc2VySWQiOiIiLCJSYW5kb20iOiIwIiwiVXNlck5hbWUiOiJHdWVzdCIsIkJpcnRoRGF0ZSI6IiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6WyJHdWVzIl0sImV4cCI6MCwiaXNzIjoiV29yZGxlLkFQSSIsImF1ZCI6IldvcmRsZS13ZWIifQ.ZJPfULKgo94NQB03lrc_ctoCn7rI5rYybWMPkOspyqsOJzSfqkUmjIqZRRnNOhcUkLkBc41y_XVk9IANj1jmXA";
+      JWT.setToken(token,this.$axios)
     }
     else
     {
