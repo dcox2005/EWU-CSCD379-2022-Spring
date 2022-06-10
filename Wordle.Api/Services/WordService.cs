@@ -145,4 +145,31 @@ public class WordService
         return wordDeleted;
     }
 
+    public bool MakeCommon(String incomingWord)
+    {
+        bool madeCommon = false;
+
+        if (incomingWord is null)
+        {
+            throw new ArgumentNullException(nameof(incomingWord));
+        }
+
+        var result = _context.Words
+            .FirstOrDefault(x => x.Value.ToLower().Equals(incomingWord.ToLower()));
+        if (result is not null)
+        {
+            madeCommon = true;
+            if(result.Common == true)
+            {
+                result.Common = false;
+            }
+            else
+            {
+                result.Common = true;
+            }
+            _context.SaveChanges();
+        }
+        return madeCommon;
+    }
+
 }

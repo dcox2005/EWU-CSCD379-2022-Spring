@@ -72,7 +72,7 @@
               <td style="text-align: center">{{ word.value }}</td>
               <td style="text-align: center">{{printWordCommon(word.common)}}</td>
               <td style="text-align: center">
-                <v-card-actions @click="makeCommon(word.common)">
+                <v-card-actions @click="makeCommon(word)">
                   <v-icon>mdi-check-bold</v-icon>
                   </v-card-actions>
               </td>
@@ -298,8 +298,13 @@ export default class WordEditor extends Vue {
       setTimeout(() => {this.wordToDeleteSet = false}, 5000)
     }
 
-    makeCommon(){
-      
+    makeCommon(commonWord: string){
+      this.$axios.post('/api/Word/MakeCommon', {
+            word: commonWord,
+        })
+        .then(() => {
+            this.$forceUpdate();
+        })
     }
 }
 </script>
