@@ -93,9 +93,20 @@ export default class UserLogin extends Vue {
           localStorage.setItem('userName', this.userName);
         });
     this.$forceUpdate();
+  console.log(`Token Data for verification: 
+  Random: ${JWT.tokenData.Random}
+  UserId: ${JWT.tokenData.UserId}
+  UserName: ${JWT.tokenData.UserName}
+  BirthDate: ${JWT.tokenData.BirthDate}
+  aud: ${JWT.tokenData.aud}
+  exp: ${JWT.tokenData.exp}
+  iss: ${JWT.tokenData.iss}
+  jti: ${JWT.tokenData.jti}
+  sub: ${JWT.tokenData.sub}
+  Roles: ${JWT.tokenData.roles}
+  `)
   }
-    //     username: 'Admin@intellitect.com',
-    //     password: 'P@ssw0rd123',
+
   submitLogIn()
   {
     this.retrieveToken();

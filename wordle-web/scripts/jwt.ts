@@ -5,6 +5,7 @@ class WordleToken {
     Random: string = "";
     UserId: string= "";
     UserName: string= "";
+    BirthDate: string= "";
     aud: string= "";
     exp: number = 0
     "http://schemas.microsoft.com/ws/2008/06/identity/claims/role":string[] = []

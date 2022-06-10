@@ -24,14 +24,14 @@ public class WordController : ControllerBase
 
     [Route("[action]")]
     [HttpPost]
-    public IEnumerable<Word> GetSizedWordList(int size)
+    public IEnumerable<Word> GetWordSized(int size)
     {
         return _service.GetSizedWordList(size);
     }
 
     [Route("[action]")]
     [HttpPost]
-    public IEnumerable<Word> GetPageWordList([FromBody] PagePost pagePost)
+    public IEnumerable<Word> GetWordPage([FromBody] PagePost pagePost)
     {
         return _service.GetPageWordList(pagePost.Page, pagePost.PageSize);
     }
@@ -45,13 +45,32 @@ public class WordController : ControllerBase
 
     [Route("[action]")]
     [HttpPost]
-    public IEnumerable<Word> GetWordSearchPageList([FromBody] SearchPagePost searchPagePost)
+    public IEnumerable<Word> GetWordSearchPage([FromBody] SearchPagePost searchPagePost)
     {
         if(searchPagePost.SearchParameter is null)
         {
             return _service.GetPageWordList(searchPagePost.Page, searchPagePost.PageSize); ;
         }
         return _service.GetWordSearchPaggedList(searchPagePost.SearchParameter, searchPagePost.Page, searchPagePost.PageSize);
+    }
+
+
+    [Route("[action]")]
+    [HttpPost]
+    public IEnumerable<Word> GetWordSearchLast([FromBody] SearchPagePost searchPagePost)
+    {
+        if (searchPagePost.SearchParameter is null)
+        {
+            return _service.GetLastPageWordList(searchPagePost.PageSize); ;
+        }
+        return _service.GetWordSearchLastPageList(searchPagePost.SearchParameter, searchPagePost.PageSize);
+    }
+
+    [Route("[action]")]
+    [HttpPost]
+    public IEnumerable<Word> GetLastPage([FromBody] PagePost pagePost)
+    {
+        return _service.GetLastPageWordList(pagePost.PageSize);
     }
 
     public class PagePost
