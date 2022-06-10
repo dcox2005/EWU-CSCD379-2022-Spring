@@ -246,14 +246,15 @@ export default class WordEditor extends Vue {
             this.newWordResultText = 'Word not added. Error occurred.'
           }
           this.newWordSet = true;
+          this.getWordList();
         })
         .catch(() => {
           this.newWordResultType = 'warning';
           this.newWordResultText = 'Error occurred. Word not added.'
           this.newWordSet = true;
+          this.getWordList();
         });
       }
-      this.getWordList();
       setTimeout(() => {this.newWordSet = false}, 5000)
     }
 
@@ -287,14 +288,15 @@ export default class WordEditor extends Vue {
             this.wordToDeleteResultText = 'Word not deleted. Error occurred.'
           }
           this.wordToDeleteSet = true;
+          this.getWordList();
         })
         .catch(() => {
           this.wordToDeleteResultType = 'warning';
           this.wordToDeleteResultText = 'Error occurred. Word not deleted.'
           this.wordToDeleteSet = true;
+          this.getWordList();
         });
       }
-      this.getWordList();
       setTimeout(() => {this.wordToDeleteSet = false}, 5000)
     }
 
