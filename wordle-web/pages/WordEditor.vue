@@ -72,7 +72,7 @@
             <tr v-for="(word, wordId) in words" :key="wordId">
               <td style="text-align: center">{{ word.value }}</td>
               <td style="text-align: center">{{printWordCommon(word.common)}}</td>
-              <td style="text-align: center">
+              <td v-if="authorizedToChangeCommon" style="text-align: center">
                 <v-card-actions @click="toggleCommonWord(word.value)">
                   <v-icon>mdi-check-bold</v-icon>
                   </v-card-actions>
@@ -109,21 +109,26 @@ export default class WordEditor extends Vue {
     wordToDeleteResultType: String = `Success`;
     wordToDeleteResultText: String = "";
     authorizedToAddDelete: boolean = false;
+    authorizedToChangeCommon: boolean = false;
+
 
     mounted(){
       this.getWordList();
       if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
       {
         this.authorizedToAddDelete = true;
+        this.authorizedToChangeCommon = true;
       }
       setInterval(() => {
         if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
         {
           this.authorizedToAddDelete = true;
+          this.authorizedToChangeCommon = true;
         }
         else
         {
           this.authorizedToAddDelete = false;
+          this.authorizedToChangeCommon = false;
         }
       }, 5000)
     }
