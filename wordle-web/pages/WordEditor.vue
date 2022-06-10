@@ -63,7 +63,8 @@
           <thead>
             <tr>
               <th style="text-align: center">Word</th>
-              <th style="text-align: center">Common</th>
+              <th style="text-align: center">Common</th>  <!--this is here so you can see that the toggle works -->
+              <th style="text-align: center">Toggle</th>
               <th v-if="authorizedToAddDelete" style="text-align: center"></th>
             </tr>
           </thead>
@@ -72,7 +73,7 @@
               <td style="text-align: center">{{ word.value }}</td>
               <td style="text-align: center">{{printWordCommon(word.common)}}</td>
               <td style="text-align: center">
-                <v-card-actions @click="makeCommon(word)">
+                <v-card-actions @click="toggleCommonWord(word.value)">
                   <v-icon>mdi-check-bold</v-icon>
                   </v-card-actions>
               </td>
@@ -300,11 +301,12 @@ export default class WordEditor extends Vue {
       setTimeout(() => {this.wordToDeleteSet = false}, 5000)
     }
 
-    makeCommon(commonWord: string){
-      this.$axios.post('/api/Word/MakeCommon', {
+    toggleCommonWord(commonWord: string){
+      this.$axios.post('/api/Word/ToggleCommonWord', {
             word: commonWord,
         })
         .then(() => {
+          this.getWordList();
             this.$forceUpdate();
         })
     }

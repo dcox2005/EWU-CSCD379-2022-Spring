@@ -95,12 +95,12 @@ public class WordController : ControllerBase
 
     [Route("[action]")]
     [HttpPost]
-    public bool MakeCommon([FromBody] IncomingWord incomingWord)
+    public bool ToggleCommonWord([FromBody] IncomingWord incomingWord)
     {
         if (incomingWord.Word is null)
             return false;
 
-        return _service.MakeCommon(incomingWord.Word);
+        return _service.ToggleCommonWord(incomingWord.Word);
     }
 
     public class IncomingWord

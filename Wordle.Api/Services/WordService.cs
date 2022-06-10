@@ -152,7 +152,7 @@ public class WordService
         return wordDeleted;
     }
 
-    public bool MakeCommon(String incomingWord)
+    public bool ToggleCommonWord(String incomingWord)
     {
         bool madeCommon = false;
 
