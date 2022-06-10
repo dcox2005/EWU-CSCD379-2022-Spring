@@ -53,6 +53,12 @@
         </v-col>
       </v-row>
       <v-card-text>
+        <v-text-field
+                  @keyup="getWordList()"
+                  v-model="searchParameter"
+                  type="text"
+                  placeholder="Search for Word"
+                ></v-text-field>
         <v-simple-table>
           <thead>
             <tr>
@@ -100,10 +106,10 @@ export default class WordEditor extends Vue {
 
     mounted(){
       this.getWordList();
-      if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
-      {
-        this.authorizedToAddDelete = true;
-      }
+      // if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
+      // {
+      //   this.authorizedToAddDelete = true;
+      // }
       setInterval(() => {
         if(JWT.tokenData.roles.includes("MasterOfTheUniverse") && JWT.age >= 21)
         {
