@@ -14,6 +14,7 @@ public class WordService
     public IEnumerable<Word> Get100Words()
     {
         var result = _context.Words
+            .OrderBy(w => w.Value)
             .Take(100);
         return result;
     }
@@ -25,6 +26,7 @@ public class WordService
             size = 10;
         }
         var result = _context.Words
+            .OrderBy(w => w.Value)
             .Take(size);
         return result;
     }
@@ -40,6 +42,7 @@ public class WordService
             page = 1;
         }
         var result = _context.Words
+            .OrderBy(w => w.Value)
             .Skip((page - 1) * pageSize)
             .Take(pageSize);
         return result;
@@ -48,7 +51,8 @@ public class WordService
     public IEnumerable<Word> GetWordSearch(String searchParameter)
     {
         var result = _context.Words
-            .Where(x => x.Value.ToLower().Contains(searchParameter.ToLower()));
+            .Where(x => x.Value.ToLower().Contains(searchParameter.ToLower()))
+            .OrderBy(w => w.Value);
         return result;
     }
 
@@ -64,6 +68,7 @@ public class WordService
         }
         var result = _context.Words
             .Where(x => x.Value.ToLower().Contains(searchParameter.ToLower()))
+            .OrderBy(w => w.Value)
             .Skip((page - 1) * pageSize)
             .Take(pageSize);
         return result;
@@ -77,6 +82,7 @@ public class WordService
         }
 
         var result = _context.Words
+            .OrderBy(w => w.Value)
             .Where(x => x.Value.ToLower().Contains(searchParameter.ToLower()));
         result = result.Skip(Math.Max(0, result.Count() - pageSize));
         return result;
@@ -89,6 +95,7 @@ public class WordService
             pageSize = 10;
         }
         var result = _context.Words
+            .OrderBy(w => w.Value)
             .Skip(Math.Max(0, _context.Words.Count() - pageSize));
         return result;
     }
