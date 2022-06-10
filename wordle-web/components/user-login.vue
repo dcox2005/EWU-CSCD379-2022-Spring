@@ -91,21 +91,21 @@ export default class UserLogin extends Vue {
           this.userName = JWT.tokenData.UserName;
           localStorage.setItem('token', result.data.token);
           localStorage.setItem('userName', this.userName);
+console.log(`Token Data for verification: 
+Random: ${JWT.tokenData.Random}
+UserId: ${JWT.tokenData.UserId}
+UserName: ${JWT.tokenData.UserName}
+BirthDateString: ${JWT.tokenData.BirthDate}
+Age: ${JWT.age}
+aud: ${JWT.tokenData.aud}
+exp: ${JWT.tokenData.exp}
+iss: ${JWT.tokenData.iss}
+jti: ${JWT.tokenData.jti}
+sub: ${JWT.tokenData.sub}
+Roles: ${JWT.tokenData.roles}
+`)
         });
     this.$forceUpdate();
-  console.log(`Token Data for verification: 
-  Random: ${JWT.tokenData.Random}
-  UserId: ${JWT.tokenData.UserId}
-  UserName: ${JWT.tokenData.UserName}
-  BirthDateString: ${JWT.tokenData.BirthDate}
-  Age: ${JWT.age}
-  aud: ${JWT.tokenData.aud}
-  exp: ${JWT.tokenData.exp}
-  iss: ${JWT.tokenData.iss}
-  jti: ${JWT.tokenData.jti}
-  sub: ${JWT.tokenData.sub}
-  Roles: ${JWT.tokenData.roles}
-  `)
   }
 
   submitLogIn()
